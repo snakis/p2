@@ -7,7 +7,7 @@
 
 <body>
 	<?php
-	echo 'This is a placeholder for Samantha's Project 2 for CSCI E-15- this site is not yet live';
+	echo "This is a placeholder for Samantha's Project 2 for CSCI E-15- this site is not yet live";
 	?>
 
 </body>

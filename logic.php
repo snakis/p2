@@ -3,9 +3,16 @@
 $userinputs = array(); //keep track of user inputs
 $password = ''; //password is a string
 $error_message = ''; //start out with no error message
-$listofwords = array('hi', 'bob', 'thread', 'crazy', 'poop', 'work', 'school', 'chair', 'kitchen', 'dog', 'cat', 'bat', 'sat'); //list of random words
-$listofspecialchars = array('!', '@', '#', '$', '%', '^', '&', '*');
-$listofnums = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+//list of random words
+$listofwords = array('hi', 'bob', 'thread', 'crazy', 'poop', 'work', 'school', 'chair', 'kitchen', 'dog', 'cat', 'bat', 'sat');//create list of special characters from ascii codes
+$ascii_code_symbols = array_merge(range(33,47), range(58, 64), range(91, 96), range(123, 126));
+$listofspecialchars='';
+foreach ($ascii_code_symbols as $key => $value) {
+	$listofspecialchars[]=chr($value);
+}
+//create list of numbers
+array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
 //get specifications from user
 foreach($_GET as $key => $value){
 	$userinputs[$key] = $value;

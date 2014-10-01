@@ -2,6 +2,7 @@
 
 $userinputs = array(); //keep track of user inputs
 $password = ''; //password is a string
+$error_message = ''; //start out with no error message
 $listofwords = array('hi', 'bob', 'thread', 'crazy', 'poop', 'work', 'school', 'chair', 'kitchen', 'dog', 'cat', 'bat', 'sat'); //list of random words
 $listofspecialchars = array('!', '@', '#', '$', '%', '^', '&', '*');
 $listofnums = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
@@ -36,7 +37,7 @@ if (array_key_exists('numwords', $userinputs)){
 
 	}
 	else{
-		echo "Please enter a valid number of words from which to construct a password. This must be greater than 0 but less than or equal to".sizeof($listofwords).".";
+		$error_message = "Please enter a valid number of words from which to construct a password. This must be greater than 0 but less than or equal to".sizeof($listofwords).".";
 	}
 }
 

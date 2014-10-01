@@ -56,4 +56,3 @@ if(array_key_exists('number', $userinputs)){
 //	}
 }
 
-echo "Your password is: ". $password;

@@ -16,8 +16,16 @@ if (array_key_exists('numwords', $userinputs)){
 	if($userinputs['numwords']>0 && $userinputs['numwords']<=sizeof($listofwords)){
 
 		$password_keys = array_rand($listofwords, $userinputs['numwords']);
+		//if only one word convert to array
+		if($userinputs['numwords'] == 1){
+			$password_keys_array[]=$password_keys;
+		}
+		//else copy to the same array
+		else{
+			$password_keys_array = $password_keys;
+		}
 		
-		foreach ($password_keys as $key => $value) {
+		foreach ($password_keys_array as $key => $value) {
 			//add a dash between words
 			if($key != 0){
 				$password = $password.'-';
@@ -36,7 +44,7 @@ if(array_key_exists('specialchar', $userinputs)){
 	//if box is selected
 	//if(isset($userinputs('specialchar')){
 		$randomspecialchar = array_rand($listofspecialchars);
-	//	$password=$password.$listofspecialchars[$randomspecialchar];
+		$password=$password.$listofspecialchars[$randomspecialchar];
 	//}
 }
 
@@ -44,7 +52,7 @@ if(array_key_exists('number', $userinputs)){
 	//if box is selected
 //	if(isset($userinputs('number')){
 		$randomnum = array_rand($listofnums);
-	//	$password=$password.$listofnums[$randomnum];
+		$password=$password.$listofnums[$randomnum];
 //	}
 }
 

@@ -1,5 +1,13 @@
 <?php
 
+/*function build_word_list(){
+	$regex='/^<li>*</li>$/';
+	$file_contents = file_get_contents("http://www.paulnoll.com/Books/Clear-English/words-01-02-hundred.html");
+	preg_match_all($regex, $file_contents, $word_list, PREG_PATTERN_ORDER);
+	echo $word_list[0][1];
+//	return $word_list;
+}*/
+
 $userinputs = array(); //keep track of user inputs
 $password = ''; //password is a string
 $error_message = ''; //start out with no error message
@@ -11,7 +19,9 @@ foreach ($ascii_code_symbols as $key => $value) {
 	$listofspecialchars[]=chr($value);
 }
 //create list of numbers
-array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+$listofnums = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+//build_word_list();
 
 //get specifications from user
 foreach($_GET as $key => $value){

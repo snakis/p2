@@ -12,3 +12,4 @@ No login required
 ##Outside code
 No outside code is used  
 XKCD image from http://xkcd.com/936/
+Word list pulled from http://www.paulnoll.com/Books/Clear-English/

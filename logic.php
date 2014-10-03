@@ -14,6 +14,7 @@ function build_word_list(){
 	return $word_list[0];
 }
 
+$word_limit = 8; //max number of words for a password
 $userinputs = array(); //keep track of user inputs
 $password = ''; //password is a string
 $error_message = ''; //start out with no error message
@@ -37,7 +38,7 @@ foreach($_GET as $key => $value){
 //construct password from random words
 if (array_key_exists('numwords', $userinputs)){
 	//check to make sure we assemble a valid # of words
-	if($userinputs['numwords']>0 && $userinputs['numwords']<=sizeof($listofwords)){
+	if($userinputs['numwords']>0 && $userinputs['numwords']<=$word_limit){
 
 		$password_keys = array_rand($listofwords, $userinputs['numwords']);
 		//if only one word convert to array
@@ -60,7 +61,7 @@ if (array_key_exists('numwords', $userinputs)){
 
 	}
 	else{
-		$error_message = "Please enter a valid number of words from which to construct a password. This must be greater than 0 but less than or equal to".sizeof($listofwords).".";
+		$error_message = "Please enter a valid number of words from which to construct a password. This must be greater than 0 but less than or equal to".$word_limit.".";
 	}
 }
 

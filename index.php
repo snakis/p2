@@ -12,7 +12,7 @@
 	<p>This application is meant to provide random words (and optionally a character and number) in a sequence to create a password. This password is meant to be more secure and easier to remember than your average password.</p>
 
 	<form action='index.php' method='GET'>
-		Number of Words to include:<br>
+		Number of Words to include (max <?=$word_limit?>):<br>
 		<input type='text' name='numwords'><br>
 		<div class="error_display">
 			<?php

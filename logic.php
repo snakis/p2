@@ -2,7 +2,12 @@
 
 function build_word_list(){
 	$regex="/<li>[a-z,\s]*<\/li>/";
-	$file_contents = file_get_contents("http://www.paulnoll.com/Books/Clear-English/words-01-02-hundred.html");
+	//read in list of words from http://www.paulnoll.com/Books/Clear-English/
+	//pick a random list of words to use each time
+	$word_building_subpages = array("01-02", "03-04", "05-06", "07-08", "09-10", "11-12", "13-14", "15-16", "17-18", "19-20", "21-22", "23-24", "25-26", "27-28", "29-30");
+	$rand_subpage = array_rand($word_building_subpages);
+	$html_string = "http://www.paulnoll.com/Books/Clear-English/words-".$word_building_subpages[$rand_subpage]."-hundred.html";
+	$file_contents = file_get_contents($html_string);
 	preg_match_all($regex, $file_contents, $word_list);
 	foreach ($word_list as &$value) {
 		//remove <li> and </li>
@@ -18,8 +23,7 @@ $word_limit = 8; //max number of words for a password
 $userinputs = array(); //keep track of user inputs
 $password = ''; //password is a string
 $error_message = ''; //start out with no error message
-//list of random words
-//$listofwords = array('hi', 'bob', 'thread', 'crazy', 'poop', 'work', 'school', 'chair', 'kitchen', 'dog', 'cat', 'bat', 'sat');
+
 $listofwords=build_word_list();
 //create list of special characters from ascii codes
 $ascii_code_symbols = array_merge(range(33,47), range(58, 64), range(91, 96), range(123, 126));
@@ -67,17 +71,13 @@ if (array_key_exists('numwords', $userinputs)){
 
 if(array_key_exists('specialchar', $userinputs)){
 	//if box is selected
-	//if(isset($userinputs('specialchar')){
-		$randomspecialchar = array_rand($listofspecialchars);
-		$password=$password.$listofspecialchars[$randomspecialchar];
-	//}
+	$randomspecialchar = array_rand($listofspecialchars);
+	$password=$password.$listofspecialchars[$randomspecialchar];
 }
 
 if(array_key_exists('number', $userinputs)){
 	//if box is selected
-//	if(isset($userinputs('number')){
-		$randomnum = array_rand($listofnums);
-		$password=$password.$listofnums[$randomnum];
-//	}
+	$randomnum = array_rand($listofnums);
+	$password=$password.$listofnums[$randomnum];
 }
 

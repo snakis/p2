@@ -1,18 +1,26 @@
 <?php
 
-/*function build_word_list(){
-	$regex='/^<li>*</li>$/';
+function build_word_list(){
+	$regex="/<li>[a-z,\s]*<\/li>/";
 	$file_contents = file_get_contents("http://www.paulnoll.com/Books/Clear-English/words-01-02-hundred.html");
-	preg_match_all($regex, $file_contents, $word_list, PREG_PATTERN_ORDER);
-	echo $word_list[0][1];
-//	return $word_list;
-}*/
+	preg_match_all($regex, $file_contents, $word_list);
+	foreach ($word_list as &$value) {
+		//remove <li> and </li>
+		$remove_values=array("<li>", "</li>");
+		$value = str_replace($remove_values, "", $value);
+		//remove all whitepaces
+		$value = preg_replace('/\s+/', '', $value);
+	}
+	return $word_list[0];
+}
 
 $userinputs = array(); //keep track of user inputs
 $password = ''; //password is a string
 $error_message = ''; //start out with no error message
 //list of random words
-$listofwords = array('hi', 'bob', 'thread', 'crazy', 'poop', 'work', 'school', 'chair', 'kitchen', 'dog', 'cat', 'bat', 'sat');//create list of special characters from ascii codes
+//$listofwords = array('hi', 'bob', 'thread', 'crazy', 'poop', 'work', 'school', 'chair', 'kitchen', 'dog', 'cat', 'bat', 'sat');
+$listofwords=build_word_list();
+//create list of special characters from ascii codes
 $ascii_code_symbols = array_merge(range(33,47), range(58, 64), range(91, 96), range(123, 126));
 $listofspecialchars='';
 foreach ($ascii_code_symbols as $key => $value) {
@@ -20,8 +28,6 @@ foreach ($ascii_code_symbols as $key => $value) {
 }
 //create list of numbers
 $listofnums = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-
-//build_word_list();
 
 //get specifications from user
 foreach($_GET as $key => $value){
